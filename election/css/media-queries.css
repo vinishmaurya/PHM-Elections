@@ -1,0 +1,193 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@media (max-width:1199px){
+
+
+.vedio_box {
+    height: 236px;
+    margin: 0;
+    padding: 0;
+    width: 100%!important;
+}
+
+.vedio_box1 {
+    height: 236px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%!important;
+}
+
+
+.box_shadow{
+	margin-bottom:30px;
+}
+	
+.new_img_box {
+	width:100%!important;
+}
+
+.text_padding {
+	padding:0!important;
+}
+
+.search_almuni1 ul {
+	margin:0!important;
+}
+
+.padding_right {
+	padding:0!important;
+}
+
+.normal_hdng {
+	margin-bottom:30px!important;
+	text-align:center!important;
+}
+
+
+#cssmenu > ul > li > a {
+	padding:5px 8px!important;
+}
+
+
+}
+
+
+
+@media (max-width:985px){
+
+.vedio_box {
+    height: 236px;
+    margin: 0;
+    padding: 0;
+    width: 100%!important;
+}
+
+.vedio_box1 {
+    height: 236px;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%!important;
+}
+
+.box_shadow{
+	margin-bottom:30px;
+}
+	
+.new_img_box {
+	width:100%!important;
+}
+
+.text_padding {
+	padding:0!important;
+}
+
+.search_almuni1 ul {
+	margin:0!important;
+}
+
+.padding_right {
+	padding:0!important;
+}
+
+.normal_hdng {
+	margin-bottom:30px!important;
+	text-align:center!important;
+}
+
+
+#cssmenu > ul > li > a {
+	padding:5px 8px!important;
+}
+
+.footer_add {
+	float:none!important;
+	text-align:center!important;
+	margin-top:30px!important;
+}
+
+.text-right1 {
+	text-align:center!important;
+}
+
+
+.text-right2 {
+	text-align:center!important;
+}
+
+
+}
+
+
+
+
+@media (max-width:770px){
+
+.like {
+	float:none!important;
+	text-align:center!important;
+	margin-top:20px!important;
+}
+
+.text-right1 {
+	text-align:center!important;
+}
+
+.text-right2 {
+	text-align:center!important;
+}
+
+
+}
+
+
+
+
+
+
+@media (max-width:572px){
+	
+.text-right1 {
+	text-align:center!important;
+}
+
+.text-right2 {
+	text-align:center!important;
+}
+
+.search_almuni ul {
+	padding:0!important;
+	margin:0!important;
+}
+
+.search_almuni1 ul {
+	margin:0!important;
+	padding:0!important;
+}
+
+.footer_add {
+	text-align:left!important;
+}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

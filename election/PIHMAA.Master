@@ -1,0 +1,413 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="PIHMAA.master.cs" Inherits="PIHMAA" %>
+
+<!DOCTYPE html>
+
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <%--<title><%: Page.Title %> - PIHMAA</title>--%>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="css/media-queries.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+        <script> 
+$(document).ready(function(){
+    $(".menu_icon").click(function(){
+        $(".navbar-nav").slideToggle("");
+    });
+});
+
+
+</script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        body {
+            
+        }
+
+        header {
+            
+            width: 100%;
+            margin: 0 auto;
+            top: 0;
+            background-color: #fff;
+            z-index: 999;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .page-header h1 {
+            color: #0093dd;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+                margin-left: -1px;
+                -webkit-border-radius: 0 6px 6px 6px;
+                -moz-border-radius: 0 6px 6px;
+                border-radius: 0 6px 6px 6px;
+            }
+
+            .dropdown-submenu:hover > .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-submenu > a:after {
+                display: block;
+                content: " ";
+                float: right;
+                width: 0;
+                height: 0;
+                border-color: transparent;
+                border-style: solid;
+                border-width: 5px 0 5px 5px;
+                border-left-color: #ccc;
+                margin-top: 5px;
+                margin-right: -10px;
+            }
+
+            .dropdown-submenu:hover > a:after {
+                border-left-color: #fff;
+            }
+
+            .dropdown-submenu.pull-left {
+                float: none;
+            }
+
+                .dropdown-submenu.pull-left > .dropdown-menu {
+                    left: -100%;
+                    margin-left: 10px;
+                    -webkit-border-radius: 6px 0 6px 6px;
+                    -moz-border-radius: 6px 0 6px 6px;
+                    border-radius: 6px 0 6px 6px;
+                }
+
+
+
+      .navbar-nav {
+        display:block;
+    }
+
+    .menu_icon {
+		color:#fff;
+		background:#337ab7;
+		margin:5px -30px 0 -30px;
+		padding:5px 30px;
+        display:none;
+    }
+		
+		.menu_icon:hover {
+			cursor:pointer;
+        
+    }		
+				
+/* Desktops, Large Screen and laptops ----------- */
+@media only screen and (max-width: 768px) {
+
+    .navbar-nav {
+        display: none;
+    }
+
+    .menu_icon {
+        display: block;
+    }
+
+
+}
+    </style>
+    <script>
+        window.onclose = funcRef;
+        funcRef()
+        {
+            document.all("lbLoginLogout").click();  
+        }
+        </script>
+
+    <script>
+        function SessionExpireAlert(timeout) {
+            var seconds = timeout / 1000;
+          //  document.getElementsByName("secondsIdle").innerHTML = seconds;
+            document.getElementsByName("seconds").innerHTML = seconds;
+            setInterval(function () {
+                seconds--;
+                document.getElementById("seconds").innerHTML = seconds;
+          //      document.getElementById("secondsIdle").innerHTML = seconds;
+            }, 1000);
+            setTimeout(function () {
+                //Show Popup before 20 seconds of timeout.
+                $find("mpeTimeout").show();
+            }, timeout - 20 * 1000);
+            setTimeout(function () {
+                window.location = "SessionTimeout.aspx";
+            }, timeout);
+        };
+        function ResetSession() {
+            //Redirect to refresh Session.
+            window.location = window.location.href;
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" method="post" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <header>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <a href="https://pihmaa.org">
+                                <img src="images/logo.png" alt="PIHMAA Logo" class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 pull-right">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <h4>Online Voting for <br>Faculty of the Year<small>
+                                        <asp:HyperLink ID="HyperLink18" NavigateUrl="~/Manage.aspx" runat="server">
+                                            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                                        </asp:HyperLink></small></h4>
+                                </div>
+                                <div class="col-lg-6 col-md-6 list-inline">
+                                    <!--<asp:LinkButton ID="lbLoginLogout" CssClass="btn btn-info" runat="server" OnClick="lbLoginLogout_Click">Login</asp:LinkButton>
+                                    <asp:LinkButton ID="lbRegister" CssClass="btn btn-info" runat="server" Visible="false" OnClick="lbRegister_Click">LinkButton</asp:LinkButton>-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <%--<h3>Session Idle: <span id="secondsIdle"></span>seconds.</h3>--%>
+                                <asp:LinkButton ID="linkFake" runat="server" />
+                               <%-- <ajaxToolkit:ModalPopupExtender ID="mpeTimeout" BehaviorID="mpeTimeout" runat="server" PopupControlID="panelPopup" TargetControlID="linkFake"
+                                    OkControlID="OkButton" CancelControlID="CancelButton" BackgroundCssClass="modalBackground" OnOkScript="ResetSession()">
+                                </ajaxToolkit:ModalPopupExtender>--%>
+                                <asp:Panel ID="panelPopup" runat="server" CssClass="modalPopup" Style="display: none">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">
+                                            <strong>Session Expiring!</strong>
+                                        </div>
+                                        <div class="panel-body text-info">
+                                            Your Session will expire in&nbsp;<span id="seconds"></span>&nbsp;seconds.<br />
+                                            Do you want to reset?
+                                        </div>
+                                        <div class="panel-footer center-block">
+                                            <asp:Button ID="OkButton" runat="server" Text="Yes" CssClass="btn btn-success" />
+                                            <asp:Button ID="CancelButton" runat="server" Text="No" CssClass="btn btn-danger" />
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+                            </div>
+                        </div>
+                         <div class="clearfix"></div>
+                        
+                        
+                        <div class="col-md-12">
+                        <span class="menu_icon">MENU<i class=" pull-right fa fa-navicon"></i></span>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <asp:HyperLink ID="HyperLink1" NavigateUrl="https://www.pihmaa.org" runat="server">Home</asp:HyperLink></li>
+                                <!--<li>
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">My PIHMAA <b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-level">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink24" NavigateUrl="~/MemberProfile.aspx" runat="server">My Profile</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink25" NavigateUrl="~/MyBatch.aspx" runat="server">My Batch</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink26" NavigateUrl="~/SearchAlumni.aspx" runat="server">Search Alumni</asp:HyperLink></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">About PIHMAA <b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-level">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink7" NavigateUrl="~/AimsObjectives.aspx" runat="server">Aims & Objectives</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink8" NavigateUrl="~/RulesRegulations.aspx" runat="server">Rules & Regulations</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink9" NavigateUrl="~/MemberBenefits.aspx" runat="server">Member Benefits</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink10" NavigateUrl="~/ExecutiveCommittee.aspx" runat="server">Executive Committee</asp:HyperLink></li>
+                                       <%-- <li>
+                                            <asp:HyperLink ID="HyperLink11" NavigateUrl="~/Chapters.aspx" runat="server">Chapters</asp:HyperLink></li>--%>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Events <b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-level">
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink13" NavigateUrl="~/EventListing.aspx" runat="server">Events</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink14" NavigateUrl="~/Gallery.aspx" runat="server">Gallery</asp:HyperLink></li>
+                                        <li>
+                                        <!--    <asp:HyperLink ID="HyperLink2" NavigateUrl="~/EventRegistration.aspx" runat="server">Event Registration</asp:HyperLink></li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink15" NavigateUrl="~/Feedback.aspx" runat="server">Feedback</asp:HyperLink></li>
+                                    </ul>
+
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Showcase <b class="caret"></b></a>
+                                    <ul class="dropdown-menu multi-level">
+                                        <li class="dropdown-submenu">
+                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Business</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <asp:HyperLink ID="HyperLink22" NavigateUrl="~/Classifieds.aspx" runat="server">Classifieds</asp:HyperLink></li>
+                                                <li>
+                                                    <asp:HyperLink ID="HyperLink23" NavigateUrl="~/AlumniSeekingServices.aspx" runat="server">Seeking Services</asp:HyperLink></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <asp:HyperLink ID="HyperLink20" NavigateUrl="~/Innovation.aspx" runat="server">Innovation</asp:HyperLink></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink16" NavigateUrl="~/News.aspx" runat="server">News</asp:HyperLink></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink21" NavigateUrl="~/ContactUs.aspx" runat="server">Contact Us</asp:HyperLink></li>
+                                <li>
+                                    <asp:HyperLink ID="hyswithctoadmin" NavigateUrl="~/admin/Default.aspx" runat="server" Visible="false">Switch as Admin</asp:HyperLink></li>
+                                 <li>
+                                    <asp:HyperLink ID="hytosuperadmin" NavigateUrl="~/Admin/Default.aspx" runat="server" Visible="false">Switch as Admin</asp:HyperLink></li>-->
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        <br><br><br>
+        </div>
+        <footer>
+            <!--<div class="container-fluid">
+                <div class="container">
+                    <div class="row quick_links">
+                        <div class="col-md-7" style="position:inherit">
+                            <p>Quick Links</p>
+                            <div class="quick_box">
+                                <ul>
+                                    <li><a href="#">My Pihmaa</a>
+                                        <ul>
+                                            <li><a href="MemberProfile.aspx">My Profile</a></li>
+                                            <li><a href="MyBatch.aspx">My Batch</a></li>
+                                            <li><a href="SearchAlumni.aspx">Search Alumni</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">About Pihmaa</a>
+                                        <ul>
+                                            <li><a href="AimsObjectives.aspx">Aims & Objectives</a></li>
+                                            <li><a href="RulesRegulations.aspx">Rules & Regulations</a></li>
+                                            <li><a href="MemberBenefits.aspx">Member Benefits</a></li>
+                                            <li><a href="ExecutiveCommittee.aspx">Executive Committee</a></li>
+                                            <li><a href="Chapters.aspx">Chapters</a></li>
+                                        </ul>
+                                    </li>
+                                   <%-- <li><a href="underconstruction.html">Search Almuni</a></li>--%>
+                                </ul>
+                            </div>
+                            <div class="quick_box">
+                                <ul>
+                                    <li><a href="#">Events</a>
+                                        <ul>
+                                            <li><a href='EventListing.aspx'>Event Listing</a></li>
+                                            <li><a href="gallery.aspx">Gallery</a></li>
+                                            <li><a href="EventRegistration.aspx">Event Registration</a></li>
+                                            <li><a href="Feedback.aspx">Feedback</a></li>
+                                        <!--</ul>
+                                    </li>                                    
+                                    <li><a href="#">Showcase</a>
+                                        <ul>
+                                            <%--<li><a href="underconstruction.html">Distinguished Alumni</a></li>--%>
+                                            <li><a href="#">Business</a>
+                                                <ul>
+                                                    <li><a href="Classifieds.aspx">Classifieds</a></li>
+                                                    <li><a href="AlumniSeekingServices.aspx">Seeking Services</a></li>
+                                                </ul>
+                                            </li>                                            
+                                            <li><a href="Innovation.aspx">Innovation</a>                                             
+                                            </li>
+                                        </ul>
+                                    </li>                                    
+                                </ul>
+                            </div>
+                            <div class="quick_box">
+                                <ul>
+                                    <li><a href="News.aspx">News</a></li>
+                                    <li><a href="ContactUs.aspx">Contact Us</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Sitemap</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-5 footer_add center-block" style="position:inherit">
+                            <p align="center">
+                                <img src="images/footer_logo.jpg" alt="Pihmaa" class="img-responsive" />
+                            </p>
+                            
+                            <div>
+                                PUSA INSTITUTE HOTEL MANAGEMENT ALUMNI ASSOCIATION
+                            <!--<br />
+                                C/o Institute of Hotel Management ,Pusa Road New Delhi 110056
+                            <br />
+                                Ph : 011-25842429 | E : info@pihmaa.org
+                            <br />
+                                W : www.pihmaa.org
+                            </div>
+                            <br />
+                            <div>
+                                <h3>Connect with us</h3>
+                                <a href="https://www.facebook.com/PIHMAA?fref=ts" target="_blank">
+                                    <img src="images/like.png" alt="Facebook Like" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            
+            <div class="container-fluid footer_cpy_right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 text-right2">Copyright © 2019. PIHMAA, All Rights Reserved</div>
+                        <div class="col-xs-12 col-md-6 text-right1">Powered By : <a href="http://odysseyin.com" target="_blank">Odyssey</a></div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+    </form>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
